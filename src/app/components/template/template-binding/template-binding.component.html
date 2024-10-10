@@ -15,6 +15,12 @@
 <h2>Class and style binding</h2>
 <p [class.classe-teste]="true">{{ this.name }}</p>
 <p [style.text-decoration]="'underline'">{{ this.name }}</p>
+<hr/>
 
 <h2>Event binding</h2>
 <button (click)="sum()">Somar idade {{ this.age }}</button>
+
+<hr/>
+<h2>Two-way binding</h2>
+<input [(ngModel)]="name" />
+{{ this.name }}
