@@ -10,4 +10,5 @@ import { Component } from '@angular/core';
 export class TemplateBindingComponent {
   public name = "Matheus Viscki"
   public age = 25
+  public isDisabled = true
 }
