@@ -15,3 +15,6 @@
 <h2>Class and style binding</h2>
 <p [class.classe-teste]="true">{{ this.name }}</p>
 <p [style.text-decoration]="'underline'">{{ this.name }}</p>
+
+<h2>Event binding</h2>
+<button (click)="sum()">Somar idade {{ this.age }}</button>

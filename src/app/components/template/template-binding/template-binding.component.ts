@@ -11,4 +11,8 @@ export class TemplateBindingComponent {
   public name = "Matheus Viscki"
   public age = 25
   public isDisabled = true
+
+  sum() {
+    this.age++
+  }
 }
