@@ -2,9 +2,16 @@
 <p>
     {{ this.name }} {{ this.age }}
 </p>
+<hr/>
 
 <h2>Property binding</h2>
 <button [disabled]="isDisabled">Button</button>
+<hr/>
 
 <h2>Atribute binding</h2>
 <p [attr.aria-label]="name">Matheus Viscki</p>
+<hr/>
+
+<h2>Class and style binding</h2>
+<p [class.classe-teste]="true">{{ this.name }}</p>
+<p [style.text-decoration]="'underline'">{{ this.name }}</p>
