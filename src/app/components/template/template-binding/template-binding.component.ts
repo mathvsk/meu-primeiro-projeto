@@ -1,10 +1,11 @@
+import { NgClass, NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-template-binding',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgClass, NgStyle],
   templateUrl: './template-binding.component.html',
   styleUrl: './template-binding.component.scss'
 })

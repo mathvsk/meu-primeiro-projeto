@@ -19,8 +19,21 @@
 
 <h2>Event binding</h2>
 <button (click)="sum()">Somar idade {{ this.age }}</button>
-
 <hr/>
+
 <h2>Two-way binding</h2>
 <input [(ngModel)]="name" />
 {{ this.name }}
+<hr/>
+
+<h3>Diretivas de atributo</h3>
+<p [ngClass]="{ 'diretiva-classe': this.age > 30 ? true : false }">
+    {{ this.name }}
+</p>
+
+<p [ngStyle]="{
+    color: 'red',
+    background: 'black'
+}">
+    {{ this.name }}
+</p>
