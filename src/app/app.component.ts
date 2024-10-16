@@ -5,17 +5,19 @@ import { NewComponentComponent } from "./components/new-component/new-component.
 import { TemplateBindingComponent } from './components/template/template-binding/template-binding.component';
 import { TemplateVariablesComponent } from "./components/template/template-variables/template-variables.component";
 import { TemplateDeferrableViewsComponent } from "./components/template/template-deferrable-views/template-deferrable-views.component";
+import { SignalsComponent } from "./components/signals/signals/signals.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent],
+  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent],
   template: `
     <router-outlet />
     <!-- <app-new-component />
     <app-template-binding /> -->
     <!-- <app-template-variables /> -->
-     <app-template-deferrable-views />
+     <!-- <app-template-deferrable-views /> -->
+      <app-signals />
   `,
 })
 export class AppComponent {}
