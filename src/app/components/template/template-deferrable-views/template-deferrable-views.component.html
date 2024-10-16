@@ -1,6 +1,25 @@
-<h2>Deferrable views</h2>
+<h2 #trigger>Deferrable views</h2>
 
-@defer {
+<!--
+  Argumentos validos do @defer:
+
+    on - especifica uma condição de acionador usando um acionador da lista.
+    (idle, timer, viewport, interaction, hover, immediate, prefetch)
+
+    @defer (on idle) {}
+    @defer (on timer(5000)) {}
+    @defer (on viewport) {}
+    @defer (on interaction(trigger)) {}
+    @defer (on hover) {}
+    @defer (on immediate) {}
+    @defer (on prefetch) {}
+
+    Nota: Vários on triggers são sempre condições OR. Da mesma forma, on misturado
+    com when também são condições OR.
+
+-->
+
+@defer() {
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>
