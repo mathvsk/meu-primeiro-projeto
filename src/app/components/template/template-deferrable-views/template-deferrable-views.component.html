@@ -14,12 +14,19 @@
     @defer (on immediate) {}
     @defer (on prefetch) {}
 
+    when - especifica uma condição imperativa como uma expressão que retorna
+    um booleano. Quando esta expressão se torna verdadeira, o espaço reservado
+    é trocado pelo conteúdo carregado lentamente (o que pode ser uma operação
+    assíncrona se as dependências precisarem ser buscadas).
+
     Nota: Vários on triggers são sempre condições OR. Da mesma forma, on misturado
     com when também são condições OR.
 
 -->
 
-@defer() {
+<button (click)="isTrue = true">Add True</button>
+
+@defer(when isTrue) {
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>
