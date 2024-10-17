@@ -2,4 +2,6 @@
 
 <!-- <app-input inputNameAlias="'Matheus Viscki'" /> -->
 <app-input [name]="this.signalName()" />
-<app-output />
+
+<app-output (outputName)="this.outputName.set($event)"/>
+<p>{{ this.outputName() }}</p>
