@@ -11,3 +11,12 @@
 <p>
     {{ loadingData$ | async }}
 </p>
+<p>
+    currency: {{ 100 | currency: "BRL" }}
+</p>
+<p>
+    percent: {{ 0.3 | percent }}
+</p>
+<p>
+    number: {{ 100.567 | number: '1.2-2' }}
+</p>
