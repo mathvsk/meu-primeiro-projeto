@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { NewComponentComponent } from '@components/new-component/new-component.component';
 import { ApiService } from 'app/services/api.service';
 
@@ -11,17 +11,26 @@ import { ApiService } from 'app/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConsumeServiceComponent implements OnInit{
-  private _apiService = inject(ApiService);
+  #apiService = inject(ApiService);
+
+  public getTask = signal<null | Array<{
+    id: string;
+    title: string;
+  }>>(null);
 
   ngOnInit(): void {
-    // novo
-    console.log(this._apiService.name());
+    this.#apiService.httpListTask$().subscribe({
+      next: (tasks) => {
+        console.log(tasks);
 
-    // antigo
-    this._apiService.name$.subscribe({
-      next: (name) => console.log(name),
-      error: (error) => console.error(error),
-      complete: () => console.log('Complete')
+        this.getTask.set(tasks);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log("Complete");
+      }
     });
   }
 

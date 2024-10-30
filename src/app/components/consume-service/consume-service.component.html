@@ -1,2 +1,8 @@
 <h2>Services</h2>
-<app-new-component />
+<ul>
+    @for (task of getTask(); track $index) {
+        <li>{{ task.title }}</li>
+    } @empty {
+        <li>No task found</li>
+    }
+</ul>
