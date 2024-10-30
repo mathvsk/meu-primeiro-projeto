@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -9,13 +9,19 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
   styleUrl: './reactive-forms.component.scss'
 })
 export class ReactiveFormsComponent {
-  public profileForm = new FormGroup({
-    name: new FormControl(''),
-    myStacks: new FormGroup({
-      front: new FormControl('Angular'),
-      back: new FormControl('Node.js')
+  #fb = inject(FormBuilder); // usar # entende que o atributo é privado
+
+  // constructor(private _fb: FormBuilder) {}
+
+  public profileForm = this.#fb.group({
+    name: [""],
+    myStacks: this.#fb.group({
+      front: ['Angular'],
+      back: ['Node.js']
     }),
-    myFavoriteFoods: new FormArray([])
+    myFavoriteFoods: this.#fb.array([
+      ['Pizza'],
+    ])
   });
 
   public update() {
