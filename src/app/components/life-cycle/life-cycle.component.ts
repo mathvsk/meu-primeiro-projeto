@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-life-cycle',
@@ -7,7 +7,7 @@ import { AfterContentInit, AfterViewInit, Component, ContentChild, DoCheck, Elem
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss'
 })
-export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit {
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit, AfterContentChecked, AfterViewChecked {
   @Input() public myNumber = 0;
   public myText$ = signal("Matheus");
 
@@ -42,5 +42,15 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
   @ContentChild('text') public text!: ElementRef;
   ngAfterContentInit(): void {
     console.log('ngAfterContentInit', this.text.nativeElement.innerText);
+  }
+
+  // Chamado após a verificação do conteudo do componente e quando o conteudo é alterado
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked');
+  }
+
+  // Chamado quando a view inteira é verificada
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked');
   }
 }
