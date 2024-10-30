@@ -11,11 +11,12 @@ import { AngularPipesComponent } from "./components/pipes/angular-pipes/angular-
 import { TemplateDrivenFormsComponent } from "./components/forms/template-driven-forms/template-driven-forms.component";
 import { ReactiveFormsComponent } from "./components/forms/reactive-forms/reactive-forms.component";
 import { ContentComponent } from "./components/content/content.component";
+import { HostElementsComponent } from "./components/host-elements/host-elements.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent],
+  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent, HostElementsComponent],
   template: `
     <router-outlet />
     <!-- <app-new-component />
@@ -27,7 +28,7 @@ import { ContentComponent } from "./components/content/content.component";
     <!-- <app-angular-pipes /> -->
     <!-- <app-template-driven-forms /> -->
     <!-- <app-rective-forms /> -->
-    <app-content>
+    <!-- <app-content>
       <p selector>
         Aqui vai o conteúdo da página
       </p>
@@ -37,7 +38,8 @@ import { ContentComponent } from "./components/content/content.component";
       <p class="footer">
         Footer
       </p>
-    </app-content>
+    </app-content> -->
+    <app-host-elements />
   `,
 })
 export class AppComponent {}
