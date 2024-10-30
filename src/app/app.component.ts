@@ -48,12 +48,12 @@ export class AppComponent implements OnInit {
   public myNumber$ = signal(0);
 
   ngOnInit(): void {
-    setInterval(() => {
-      if (this.myNumber$() === 5) {
-        return;
-      }
+    // setInterval(() => {
+    //   if (this.myNumber$() === 5) {
+    //     return;
+    //   }
 
-      this.myNumber$.set(this.myNumber$() + 1);
-    }, 1000);
+    //   this.myNumber$.set(this.myNumber$() + 1);
+    // }, 1000);
   }
 }
