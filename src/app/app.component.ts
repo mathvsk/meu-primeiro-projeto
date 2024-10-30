@@ -14,11 +14,12 @@ import { ContentComponent } from "@components/content/content.component";
 import { HostElementsComponent } from "@components/host-elements/host-elements.component";
 import { LifeCycleComponent } from "@components/life-cycle/life-cycle.component";
 import { environment } from 'environments/environment';
+import { ConsumeServiceComponent } from "./components/consume-service/consume-service.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent],
+  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent],
   template: `
     <router-outlet />
     <!-- <app-new-component />
@@ -42,7 +43,7 @@ import { environment } from 'environments/environment';
       </p>
     </app-content> -->
     <!-- <app-host-elements /> -->
-     @if (exibirComponente) {
+     <!-- @if (exibirComponente) {
        <app-life-cycle [inputMyNumber]="myNumber$()">
          <p text #text>
            Aqui vai o conteúdo da página
@@ -50,7 +51,8 @@ import { environment } from 'environments/environment';
        </app-life-cycle>
      }
 
-     <button (click)="exibirComponente = !exibirComponente">Destruir componente</button>
+     <button (click)="exibirComponente = !exibirComponente">Destruir componente</button> -->
+    <app-consume-service />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
