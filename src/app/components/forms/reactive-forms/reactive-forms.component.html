@@ -1,1 +1,15 @@
 <h3>Reactive forms</h3>
+
+<form>
+    <label>
+        Name:
+        <input 
+            type="text" 
+            [formControl]="name"
+        />
+    </label>
+
+    <p>{{ name.value }}</p>
+
+    <button type="button" (click)="updateName()">Adicionar nome</button>
+</form>
