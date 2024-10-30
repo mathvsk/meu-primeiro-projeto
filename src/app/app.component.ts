@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { NewComponentComponent } from "./components/new-component/new-component.component";
@@ -12,11 +12,12 @@ import { TemplateDrivenFormsComponent } from "./components/forms/template-driven
 import { ReactiveFormsComponent } from "./components/forms/reactive-forms/reactive-forms.component";
 import { ContentComponent } from "./components/content/content.component";
 import { HostElementsComponent } from "./components/host-elements/host-elements.component";
+import { LifeCycleComponent } from "./components/life-cycle/life-cycle.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent, HostElementsComponent],
+  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent],
   template: `
     <router-outlet />
     <!-- <app-new-component />
@@ -39,7 +40,20 @@ import { HostElementsComponent } from "./components/host-elements/host-elements.
         Footer
       </p>
     </app-content> -->
-    <app-host-elements />
+    <!-- <app-host-elements /> -->
+    <app-life-cycle [myNumber]="myNumber$()" />
   `,
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  public myNumber$ = signal(0);
+
+  ngOnInit(): void {
+    setInterval(() => {
+      if (this.myNumber$() === 5) {
+        return;
+      }
+
+      this.myNumber$.set(this.myNumber$() + 1);
+    }, 1000);
+  }
+}
