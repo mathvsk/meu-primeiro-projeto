@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { NewComponentComponent } from "./components/new-component/new-component.component";
@@ -42,7 +42,7 @@ import { LifeCycleComponent } from "./components/life-cycle/life-cycle.component
     </app-content> -->
     <!-- <app-host-elements /> -->
      @if (exibirComponente) {
-       <app-life-cycle [myNumber]="myNumber$()">
+       <app-life-cycle [inputMyNumber]="myNumber$()">
          <p text #text>
            Aqui vai o conteúdo da página
          </p>
@@ -51,18 +51,21 @@ import { LifeCycleComponent } from "./components/life-cycle/life-cycle.component
 
      <button (click)="exibirComponente = !exibirComponente">Destruir componente</button>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   public myNumber$ = signal(0);
   public exibirComponente = true;
 
   ngOnInit(): void {
-    // setInterval(() => {
-    //   if (this.myNumber$() === 5) {
-    //     return;
-    //   }
+    setInterval(() => {
+      if (this.myNumber$() === 10) {
+        return;
+      }
 
-    //   this.myNumber$.set(this.myNumber$() + 1);
-    // }, 1000);
+      this.myNumber$.update((oldValue) => {
+        return oldValue + 1;
+      });
+    }, 1000);
   }
 }

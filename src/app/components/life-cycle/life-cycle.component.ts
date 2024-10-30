@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { takeUntil, timer } from 'rxjs';
 
@@ -7,19 +7,23 @@ import { takeUntil, timer } from 'rxjs';
   standalone: true,
   imports: [],
   templateUrl: './life-cycle.component.html',
-  styleUrl: './life-cycle.component.scss'
+  styleUrl: './life-cycle.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit, AfterContentChecked, AfterViewChecked, OnDestroy {
-  @Input() public myNumber = 0;
+  public myNumber = signal(0);
+  @Input() set inputMyNumber(value: number) {
+    this.myNumber.set(value);
+  };
   public myText$ = signal("Matheus");
-  private $destroy = timer(0, 1000)
-  .pipe(
-    takeUntilDestroyed()
-  ).subscribe({
-    next: (next) => console.log('next', next),
-    error: (error) => console.error('error', error),
-    complete: () => console.log('complete')
-  });
+  // private $destroy = timer(0, 1000)
+  // .pipe(
+  //   takeUntilDestroyed()
+  // ).subscribe({
+  //   next: (next) => console.log('next', next),
+  //   error: (error) => console.error('error', error),
+  //   complete: () => console.log('complete')
+  // });
 
   // Inicializado quando o componente é criado
   constructor() {}
@@ -29,7 +33,7 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
   // Chamado quando os dados de entrada @input mudam
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges', changes);
-    console.log('myNumber', changes['myNumber'].currentValue);
+    console.log('myNumber', changes['inputMyNumber'].currentValue);
   }
 
   ngOnInit(): void {
