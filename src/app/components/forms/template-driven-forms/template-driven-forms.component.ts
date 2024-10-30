@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven-forms',
@@ -24,4 +24,12 @@ export class TemplateDrivenFormsComponent {
       preco: 'R$ 10,00'
     }
   ]);
+
+  submitForm(form: NgForm) {
+    if (form.invalid) {
+      alert('Formulário inválido');
+    }
+
+    console.log(form.value);
+  }
 }

@@ -7,7 +7,7 @@
 -->
 
 <h3>Template drive forms</h3>
-<form>
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
     <label>
         <input 
             type="text" 
@@ -115,4 +115,14 @@
         touched: {{ comidas.touched }}
     </p>
     <hr>
+
+    <button type="submit" [disabled]="!form.valid">Submit</button>
 </form>
+
+<hr>
+<p>
+    Form valid: {{ form.valid }}
+    <br>
+    form value: {{ form.value | json }}
+</p>
+<hr>
