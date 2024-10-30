@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-life-cycle',
@@ -7,7 +7,7 @@ import { AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnInit
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss'
 })
-export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit {
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit {
   @Input() public myNumber = 0;
   public myText$ = signal("Matheus");
 
@@ -36,5 +36,11 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit');
     console.log(this.content.nativeElement.innerText);
+  }
+
+  // Semelhante ao ngAfterViewInit, mas é chamado após a exibição do conteúdo do componente
+  @ContentChild('text') public text!: ElementRef;
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit', this.text.nativeElement.innerText);
   }
 }

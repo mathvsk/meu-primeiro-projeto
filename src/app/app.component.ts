@@ -41,7 +41,11 @@ import { LifeCycleComponent } from "./components/life-cycle/life-cycle.component
       </p>
     </app-content> -->
     <!-- <app-host-elements /> -->
-    <app-life-cycle [myNumber]="myNumber$()" />
+    <app-life-cycle [myNumber]="myNumber$()">
+      <p text #text>
+        Aqui vai o conteúdo da página
+      </p>
+    </app-life-cycle>
   `,
 })
 export class AppComponent implements OnInit {
