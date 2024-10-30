@@ -1,4 +1,6 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'app-life-cycle',
@@ -7,9 +9,17 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss'
 })
-export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit, AfterContentChecked, AfterViewChecked {
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit, AfterContentChecked, AfterViewChecked, OnDestroy {
   @Input() public myNumber = 0;
   public myText$ = signal("Matheus");
+  private $destroy = timer(0, 1000)
+  .pipe(
+    takeUntilDestroyed()
+  ).subscribe({
+    next: (next) => console.log('next', next),
+    error: (error) => console.error('error', error),
+    complete: () => console.log('complete')
+  });
 
   // Inicializado quando o componente é criado
   constructor() {}
@@ -52,5 +62,11 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
   // Chamado quando a view inteira é verificada
   ngAfterViewChecked(): void {
     console.log('ngAfterViewChecked');
+  }
+
+  // Chamado antes de destruir o componente
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+    // this.$destroy.unsubscribe();
   }
 }

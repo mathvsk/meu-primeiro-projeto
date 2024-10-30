@@ -41,15 +41,20 @@ import { LifeCycleComponent } from "./components/life-cycle/life-cycle.component
       </p>
     </app-content> -->
     <!-- <app-host-elements /> -->
-    <app-life-cycle [myNumber]="myNumber$()">
-      <p text #text>
-        Aqui vai o conteúdo da página
-      </p>
-    </app-life-cycle>
+     @if (exibirComponente) {
+       <app-life-cycle [myNumber]="myNumber$()">
+         <p text #text>
+           Aqui vai o conteúdo da página
+         </p>
+       </app-life-cycle>
+     }
+
+     <button (click)="exibirComponente = !exibirComponente">Destruir componente</button>
   `,
 })
 export class AppComponent implements OnInit {
   public myNumber$ = signal(0);
+  public exibirComponente = true;
 
   ngOnInit(): void {
     // setInterval(() => {
