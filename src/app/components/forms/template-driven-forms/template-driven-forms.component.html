@@ -29,4 +29,41 @@
         touched(formulario ja tocado): {{ name.touched }}
     </p>
     <hr>
+
+    <label>
+        Feminino:
+        <input 
+            type="radio" 
+            value="feminino"
+            name="radioSexo"
+            #sexo="ngModel"
+            [(ngModel)]="sexo.value"
+            required
+        />
+    </label>
+
+    
+    <label>
+        Masculino:
+        <input 
+            type="radio" 
+            value="masculino"
+            name="radioSexo"
+            #sexo="ngModel"
+            [(ngModel)]="sexo.value"
+            required
+        />
+    </label>
+
+    <hr>
+    <p>
+        nameIput: {{ sexo.value }}
+        <br>
+        valid: {{ sexo.valid }}
+        <br>
+        dirty: {{ sexo.dirty }}
+        <br>
+        touched: {{ sexo.touched }}
+    </p>
+    <hr>
 </form>
