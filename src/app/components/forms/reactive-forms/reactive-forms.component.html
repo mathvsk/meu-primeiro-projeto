@@ -6,9 +6,29 @@
         <input 
             type="text" 
             formControlName="name"
+            required
         />
-        <p>value: {{ profileForm.value.name }}</p>
     </label>
+
+    <hr>
+    <h3> 
+        [formGroup] = profileForm
+    </h3>
+    <p>value:{{ profileForm.value.name }}</p>
+    <p>valid:{{ profileForm.valid }}</p>
+    <p>dirty:{{ profileForm.dirty }}</p>
+    <p>touched:{{ profileForm.touched }}</p>
+    <hr>
+
+    <hr>
+    <h3>
+        [formControlName] = name
+    </h3>
+    <p>value:{{ profileForm.get('name')?.value }}</p>
+    <p>valid:{{ profileForm.get('name')?.valid }}</p>
+    <p>dirty:{{ profileForm.get('name')?.dirty }}</p>
+    <p>touched:{{ profileForm.get('name')?.touched }}</p>
+    <hr>
 
     <div formGroupName="myStacks">
         <label>
@@ -44,7 +64,7 @@
 
     <button type="button" (click)="addFavoriteFood(newFood.value)">Adicionar comida</button>
     <hr>
-    
+
     <div formArrayName="myFavoriteFoods">
         @for (item of profileForm.value.myFavoriteFoods; track $index;) {
             <label>
@@ -53,4 +73,6 @@
             </label>
         }
     </div>
+
+    <button [disabled]="!profileForm.valid">Submit</button>
 </form>
