@@ -10,11 +10,12 @@ import { PaiOuMaeComponent } from "./components/comunicacao-entre-components/pai
 import { AngularPipesComponent } from "./components/pipes/angular-pipes/angular-pipes.component";
 import { TemplateDrivenFormsComponent } from "./components/forms/template-driven-forms/template-driven-forms.component";
 import { ReactiveFormsComponent } from "./components/forms/reactive-forms/reactive-forms.component";
+import { ContentComponent } from "./components/content/content.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent],
+  imports: [RouterOutlet, NewComponentComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateDeferrableViewsComponent, SignalsComponent, PaiOuMaeComponent, AngularPipesComponent, TemplateDrivenFormsComponent, ReactiveFormsComponent, ContentComponent],
   template: `
     <router-outlet />
     <!-- <app-new-component />
@@ -25,7 +26,18 @@ import { ReactiveFormsComponent } from "./components/forms/reactive-forms/reacti
     <!-- <app-pai-ou-mae /> -->
     <!-- <app-angular-pipes /> -->
     <!-- <app-template-driven-forms /> -->
-    <app-reactive-forms />
+    <!-- <app-rective-forms /> -->
+    <app-content>
+      <p selector>
+        Aqui vai o conteúdo da página
+      </p>
+      <p selector>
+        Aqui vai o conteúdo da página
+      </p>
+      <p class="footer">
+        Footer
+      </p>
+    </app-content>
   `,
 })
 export class AppComponent {}
