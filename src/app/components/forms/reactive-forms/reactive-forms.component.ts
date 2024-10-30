@@ -51,4 +51,12 @@ export class ReactiveFormsComponent {
     
     foods.push(addFood);
   }
+
+  public submit() {
+    if (!this.profileForm.valid) {
+      alert("Preencha o formulario corretamente");
+    }
+
+    alert(JSON.stringify(this.profileForm.value));
+  }
 }
