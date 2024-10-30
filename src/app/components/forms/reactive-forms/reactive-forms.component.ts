@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -15,6 +15,7 @@ export class ReactiveFormsComponent {
       front: new FormControl('Angular'),
       back: new FormControl('Node.js')
     }),
+    myFavoriteFoods: new FormArray([])
   });
 
   public update() {
@@ -25,5 +26,12 @@ export class ReactiveFormsComponent {
         back: 'Express.js'
       }
     });
+  }
+
+  public addFavoriteFood(newFood: string) {
+    const foods = this.profileForm.get('myFavoriteFoods') as FormArray
+    const addFood = new FormControl(newFood);
+    
+    foods.push(addFood);
   }
 }

@@ -32,4 +32,25 @@
 
 
     <button type="button" (click)="update()">Atualizar valores</button>
+
+    <hr>
+    <label>
+        New food:
+        <input 
+            type="text"
+            #newFood
+        />
+    </label>
+
+    <button type="button" (click)="addFavoriteFood(newFood.value)">Adicionar comida</button>
+    <hr>
+    
+    <div formArrayName="myFavoriteFoods">
+        @for (item of profileForm.value.myFavoriteFoods; track $index;) {
+            <label>
+                {{ item }}
+                <input type="text" [formControlName]="$index">
+            </label>
+        }
+    </div>
 </form>
