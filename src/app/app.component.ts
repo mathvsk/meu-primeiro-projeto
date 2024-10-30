@@ -13,6 +13,7 @@ import { ReactiveFormsComponent } from "@components/forms/reactive-forms/reactiv
 import { ContentComponent } from "@components/content/content.component";
 import { HostElementsComponent } from "@components/host-elements/host-elements.component";
 import { LifeCycleComponent } from "@components/life-cycle/life-cycle.component";
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -56,6 +57,10 @@ import { LifeCycleComponent } from "@components/life-cycle/life-cycle.component"
 export class AppComponent implements OnInit {
   public myNumber$ = signal(0);
   public exibirComponente = true;
+
+  constructor() {
+    console.log('Ambiente:', environment.env);    
+  }
 
   ngOnInit(): void {
     setInterval(() => {
