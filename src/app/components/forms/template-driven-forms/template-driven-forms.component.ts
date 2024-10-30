@@ -1,13 +1,27 @@
-import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven-forms',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, JsonPipe],
   templateUrl: './template-driven-forms.component.html',
   styleUrl: './template-driven-forms.component.scss'
 })
 export class TemplateDrivenFormsComponent {
-
+  public comidas$ = signal<Array<{comidas: string, preco:string}>>([
+    {
+      comidas: 'Pizza',
+      preco: 'R$ 20,00'
+    },
+    {
+      comidas: 'Hamburguer',
+      preco: 'R$ 15,00'
+    },
+    {
+      comidas: 'Macarrão',
+      preco: 'R$ 10,00'
+    }
+  ]);
 }
