@@ -19,7 +19,7 @@
     <p>dirty:{{ profileForm.dirty }}</p>
     <p>touched:{{ profileForm.touched }}</p>
     <hr>
-
+    
     <hr>
     <h3>
         [formControlName] = name
@@ -28,6 +28,7 @@
     <p>valid:{{ profileForm.get('name')?.valid }}</p>
     <p>dirty:{{ profileForm.get('name')?.dirty }}</p>
     <p>touched:{{ profileForm.get('name')?.touched }}</p>
+    <p>errors:{{ profileForm.get('name')?.errors | json }}</p>
     <hr>
 
     <div formGroupName="myStacks">
