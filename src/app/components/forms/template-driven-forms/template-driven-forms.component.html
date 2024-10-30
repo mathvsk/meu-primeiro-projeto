@@ -20,7 +20,7 @@
 
     <hr>
     <p>
-        nameIput: {{ name.value }}
+        value: {{ name.value }}
         <br>
         valid: {{ name.valid }}
         <br>
@@ -57,13 +57,37 @@
 
     <hr>
     <p>
-        nameIput: {{ sexo.value }}
+        value: {{ sexo.value }}
         <br>
         valid: {{ sexo.valid }}
         <br>
         dirty: {{ sexo.dirty }}
         <br>
         touched: {{ sexo.touched }}
+    </p>
+    <hr>
+
+    <label>
+        Angular:
+        <input 
+            type="checkbox" 
+            value="angular"
+            name="checkAngular"
+            #techAngular="ngModel"
+            [(ngModel)]="techAngular.value"
+            required
+        />
+    </label>
+
+    <hr>
+    <p>
+        value: {{ techAngular.value }}
+        <br>
+        valid: {{ techAngular.valid }}
+        <br>
+        dirty: {{ techAngular.dirty }}
+        <br>
+        touched: {{ techAngular.touched }}
     </p>
     <hr>
 </form>
