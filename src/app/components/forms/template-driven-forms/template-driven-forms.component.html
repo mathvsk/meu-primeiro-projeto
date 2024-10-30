@@ -1,0 +1,32 @@
+<!--
+  Ele é util para adicionar um formulário simples a um
+  aplicativo, como um formulário de inscrição em uma lista de e-mail.
+
+  É mais fácil de adicionar a um aplicativo, mas não são escalonáveis
+  tão bem quanto os formulários reativos.
+-->
+
+<h3>Template drive forms</h3>
+<form>
+    <label>
+        <input 
+            type="text" 
+            name="inputName"
+            #name="ngModel"
+            [(ngModel)]="name.value"
+            required
+        >
+    </label>
+
+    <hr>
+    <p>
+        nameIput: {{ name.value }}
+        <br>
+        valid: {{ name.valid }}
+        <br>
+        dirty(formulario ja preenchido): {{ name.dirty }}
+        <br>
+        touched(formulario ja tocado): {{ name.touched }}
+    </p>
+    <hr>
+</form>
