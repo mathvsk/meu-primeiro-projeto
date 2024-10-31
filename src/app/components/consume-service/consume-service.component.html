@@ -17,8 +17,10 @@
 }
 
 <h3>Get item</h3>
-@if (getListTask(); as data) {
+@if (!getTaskIdError() && getListTask(); as data ) {
     Get por id: {{ getTaskId() | json }}
+} @else {
+    <p>{{ getTaskIdError()?.error.message }}</p>
 }
 
 <h3>Post taks</h3>
