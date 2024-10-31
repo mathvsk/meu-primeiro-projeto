@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'environments/environment';
 import { BehaviorSubject, catchError, Observable, shareReplay, tap, throwError } from 'rxjs';
@@ -27,8 +27,14 @@ export class ApiService {
     return this.#setListTask.asReadonly();
   }
   public httpListTask$(): Observable<ITask[]> {
+    const headers = new HttpHeaders().set('my-header', 'my-value');
+    const params = new HttpParams().set('my-param', 'my-value');
     this.#setListTask.set(null);
-    return this.#http.get<ITask[]>(this.#url())
+
+    return this.#http.get<ITask[]>(this.#url(), {
+      headers,
+      params
+    })
     .pipe(
       shareReplay(), //evita multiplas chamadas
       tap((res) => {
