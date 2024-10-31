@@ -1,13 +1,19 @@
 <h2>Services</h2>
 
- @if (getListTask(); as data) {
-     <ul>
-        @for (task of data; track $index) {
-            <li>{{ task.title }}</li>
-        } @empty {
-            <li>No task found</li>
-         }
-     </ul>
- } @else {
-     <p>Loading...</p>
- }
+<h3>Get list</h3>
+@if (getListTask(); as data) {
+<ul>
+    @for (task of data; track $index) {
+    <li>{{ task.title }}</li>
+    } @empty {
+    <li>No task found</li>
+    }
+</ul>
+} @else {
+<p>Loading...</p>
+}
+
+<h3>Get item</h3>
+@if (getListTask(); as data) {
+    Get por id: {{ getTaskId() | json }}
+}
