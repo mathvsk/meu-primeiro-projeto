@@ -4,7 +4,10 @@
 @if (getListTask(); as data) {
 <ul>
     @for (task of data; track $index) {
-    <li>{{ task.title }}</li>
+    <li>
+        {{ task.title }}
+        <button (click)="deleteTask(task.id)">delete</button>
+    </li> 
     } @empty {
     <li>No task found</li>
     }
