@@ -1,19 +1,13 @@
 <h2>Services</h2>
 
-<!-- basico -->
-<ul>
-    @for (task of getTask(); track $index) {
-        <li>{{ task.title }}</li>
-    } @empty {
-        <li>No task found</li>
-    }
-</ul>
-
-<!-- pipe -->
-<ul>
-    @for (task of getTasks$ | async ; track $index) {
-        <li>{{ task.title }}</li>
-    } @empty {
-        <li>No task found</li>
-    }
-</ul>
+ @if (getListTask(); as data) {
+     <ul>
+        @for (task of data; track $index) {
+            <li>{{ task.title }}</li>
+        } @empty {
+            <li>No task found</li>
+         }
+     </ul>
+ } @else {
+     <p>Loading...</p>
+ }

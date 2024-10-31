@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
 
 interface ITask {
   id: string;
@@ -14,7 +14,7 @@ interface ITask {
 export class ApiService {
   #http = inject(HttpClient);
   #url = signal(environment.apiTask);
-  
+
   // novo
   public name = signal("Matheus");
 
@@ -22,10 +22,13 @@ export class ApiService {
   public name$ = new BehaviorSubject("Igor");
   constructor() { }
 
+  #setListTask = signal<ITask[] | null>(null);
+  public getListTask = this.#setListTask.asReadonly();
   public httpListTask$(): Observable<ITask[]> {
     return this.#http.get<ITask[]>(this.#url())
     .pipe(
-      shareReplay() //evita multiplas chamadas
+      shareReplay(), //evita multiplas chamadas
+      tap((res) => this.#setListTask.set(res)) // faz a injeção de dados no parametro
     );
   }
 }

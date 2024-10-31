@@ -1,5 +1,6 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NewComponentComponent } from '@components/new-component/new-component.component';
 import { ApiService } from 'app/services/api.service';
 
@@ -14,27 +15,9 @@ import { ApiService } from 'app/services/api.service';
 export class ConsumeServiceComponent implements OnInit{
   #apiService = inject(ApiService);
 
-  public getTask = signal<null | Array<{
-    id: string;
-    title: string;
-  }>>(null);
-
-  public getTasks$ = this.#apiService.httpListTask$();
+  public getListTask = this.#apiService.getListTask;
 
   ngOnInit(): void {
-    this.getTasks$.subscribe({
-      next: (tasks) => {
-        console.log(tasks);
-
-        this.getTask.set(tasks);
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        console.log("Complete");
-      }
-    });
+    this.#apiService.httpListTask$().subscribe();
   }
-
 }
