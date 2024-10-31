@@ -49,43 +49,22 @@ export class ApiService {
     );
   }
 
-  #setPostTask = signal<ITask | null>(null);
-  get postTask() {
-    return this.#setPostTask.asReadonly();
-  }
   public httpPostTask$(title: string): Observable<ITask> {
     return this.#http.post<ITask>(this.#url(), {
       title
     })
-    .pipe(
-      shareReplay(),
-      tap((res) => this.#setTaskId.set(res))
-    );
+    .pipe(shareReplay());
   }
 
-  #setPatchTask = signal<ITask | null>(null);
-  get patchTask() {
-    return this.#setPatchTask.asReadonly();
-  }
   public httpPatchTask$(id: string, title: string): Observable<ITask> {
     return this.#http.patch<ITask>(`${this.#url()}${id}`, {
       title
     })
-    .pipe(
-      shareReplay(),
-      tap((res) => this.#setTaskId.set(res))
-    );
+    .pipe(shareReplay());
   }
 
-  #setDeleteTask = signal<ITask | null>(null);
-  get deleteTask() {
-    return this.#setDeleteTask.asReadonly();
-  }
   public httpDeleteTask$(id: string): Observable<void> {
-    return this.#http.delete<ITask>(`${this.#url()}${id}`)
-    .pipe(
-      shareReplay(),
-      tap((res) => this.#setTaskId.set(res))
-    );
+    return this.#http.delete<void>(`${this.#url()}${id}`)
+    .pipe(shareReplay());
   }
 }
