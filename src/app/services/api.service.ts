@@ -27,6 +27,7 @@ export class ApiService {
     return this.#setListTask.asReadonly();
   }
   public httpListTask$(): Observable<ITask[]> {
+    this.#setListTask.set(null);
     return this.#http.get<ITask[]>(this.#url())
     .pipe(
       shareReplay(), //evita multiplas chamadas
@@ -42,6 +43,7 @@ export class ApiService {
     return this.#setTaskId.asReadonly();
   }
   public httpTaskId$(id: string): Observable<ITask> {
+    this.#setTaskId.set(null);
     return this.#http.get<ITask>(`${this.#url()}${id}`)
     .pipe(
       shareReplay(),
