@@ -17,3 +17,7 @@
 @if (getListTask(); as data) {
     Get por id: {{ getTaskId() | json }}
 }
+
+<h3>Post taks</h3>
+<input #newTask type="text" placeholder="Add new task">
+<button (click)="postTask(newTask.value)">Add new task</button>

@@ -48,4 +48,18 @@ export class ApiService {
       tap((res) => this.#setTaskId.set(res))
     );
   }
+
+  #setPostTask = signal<ITask | null>(null);
+  get getPostTask() {
+    return this.#setPostTask.asReadonly();
+  }
+  public httpPostTask$(title: string): Observable<ITask> {
+    return this.#http.post<ITask>(this.#url(), {
+      title
+    })
+    .pipe(
+      shareReplay(),
+      tap((res) => this.#setTaskId.set(res))
+    );
+  }
 }

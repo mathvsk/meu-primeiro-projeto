@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NewComponentComponent } from '@components/new-component/new-component.component';
 import { ApiService } from 'app/services/api.service';
+import { concat, concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-consume-service',
@@ -17,9 +18,18 @@ export class ConsumeServiceComponent implements OnInit{
 
   public getListTask = this.#apiService.getListTask;
   public getTaskId = this.#apiService.getTaskId;
+  public getPostTask = this.#apiService.getPostTask;
 
   ngOnInit(): void {
     this.#apiService.httpListTask$().subscribe();
     this.#apiService.httpTaskId$("BgqYHq8EhCf7ehiPImgZ").subscribe();
+  }
+
+  public postTask(title: string): void {
+    this.#apiService.httpPostTask$(title)
+      .pipe(
+        concatMap(() => this.#apiService.httpListTask$())
+      )
+      .subscribe();
   }
 }
