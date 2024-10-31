@@ -21,3 +21,8 @@
 <h3>Post taks</h3>
 <input #newTask type="text" placeholder="Add new task">
 <button (click)="postTask(newTask.value)">Add new task</button>
+
+<h3>Pacth taks</h3>
+<input #id type="text" placeholder="Add id">
+<input #newTask2 type="text" placeholder="Add new task">
+<button (click)="patchTask(id.value, newTask2.value)">Add new task</button>

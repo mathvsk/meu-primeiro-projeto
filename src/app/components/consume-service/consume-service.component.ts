@@ -18,7 +18,8 @@ export class ConsumeServiceComponent implements OnInit{
 
   public getListTask = this.#apiService.getListTask;
   public getTaskId = this.#apiService.getTaskId;
-  public getPostTask = this.#apiService.getPostTask;
+  public getPostTask = this.#apiService.postTask;
+  public getPatchTask = this.#apiService.patchTask;
 
   ngOnInit(): void {
     this.#apiService.httpListTask$().subscribe();
@@ -27,6 +28,16 @@ export class ConsumeServiceComponent implements OnInit{
 
   public postTask(title: string): void {
     this.#apiService.httpPostTask$(title)
+      .pipe(
+        concatMap(() => this.#apiService.httpListTask$())
+      )
+      .subscribe();
+  }
+
+  
+  public patchTask(id: string, title: string): void {
+    console.log(id, title);
+    this.#apiService.httpPatchTask$(id, title)
       .pipe(
         concatMap(() => this.#apiService.httpListTask$())
       )

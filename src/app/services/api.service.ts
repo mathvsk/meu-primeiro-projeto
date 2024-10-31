@@ -50,11 +50,25 @@ export class ApiService {
   }
 
   #setPostTask = signal<ITask | null>(null);
-  get getPostTask() {
+  get postTask() {
     return this.#setPostTask.asReadonly();
   }
   public httpPostTask$(title: string): Observable<ITask> {
     return this.#http.post<ITask>(this.#url(), {
+      title
+    })
+    .pipe(
+      shareReplay(),
+      tap((res) => this.#setTaskId.set(res))
+    );
+  }
+
+  #setPatchTask = signal<ITask | null>(null);
+  get patchTask() {
+    return this.#setPatchTask.asReadonly();
+  }
+  public httpPatchTask$(id: string, title: string): Observable<ITask> {
+    return this.#http.patch<ITask>(`${this.#url()}${id}`, {
       title
     })
     .pipe(
