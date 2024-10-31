@@ -26,3 +26,7 @@
 <input #id type="text" placeholder="Add id">
 <input #newTask2 type="text" placeholder="Add new task">
 <button (click)="patchTask(id.value, newTask2.value)">Add new task</button>
+
+<h3>Delete taks</h3>
+<input #idDelete type="text" placeholder="Add id task delete">
+<button (click)="deleteTask(idDelete.value)">Delete a task</button>

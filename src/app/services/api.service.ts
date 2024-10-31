@@ -76,4 +76,16 @@ export class ApiService {
       tap((res) => this.#setTaskId.set(res))
     );
   }
+
+  #setDeleteTask = signal<ITask | null>(null);
+  get deleteTask() {
+    return this.#setDeleteTask.asReadonly();
+  }
+  public httpDeleteTask$(id: string): Observable<void> {
+    return this.#http.delete<ITask>(`${this.#url()}${id}`)
+    .pipe(
+      shareReplay(),
+      tap((res) => this.#setTaskId.set(res))
+    );
+  }
 }
