@@ -1,0 +1,9 @@
+<ul>
+    @for(page of pages(); track $index;) {
+    <li>
+        <a [routerLink]="page.link">
+            {{ page.name }}
+        </a>
+    </li>
+    }
+</ul>

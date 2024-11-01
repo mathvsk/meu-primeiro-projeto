@@ -1,0 +1,9 @@
+@if (exibirComponente) {
+    <app-life-cycle [inputMyNumber]="myNumber$()">
+        <p text #text>
+            Aqui vai o conteúdo da página
+        </p>
+    </app-life-cycle>
+}
+
+<button (click)="exibirComponente = !exibirComponente">Destruir componente</button>
