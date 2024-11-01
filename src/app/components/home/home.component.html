@@ -1,9 +1,9 @@
 <ul>
     @for(page of pages(); track $index;) {
-    <li>
-        <a [routerLink]="page.link">
-            {{ page.name }}
-        </a>
-    </li>
+        <li>
+            <a [routerLink]="page.parametro ? [page.link, 1] : [page.link]">
+                {{ page.name }}
+            </a>
+        </li>
     }
 </ul>

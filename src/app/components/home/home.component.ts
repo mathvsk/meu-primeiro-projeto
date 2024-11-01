@@ -63,5 +63,10 @@ export class HomeComponent {
       name: "Services",
       link: "/app-consume-service",
     },
+    {
+      name: "Rota com parametro",
+      link: "/app-rota-com-parametro",
+      parametro: true
+    },
   ])
 }
