@@ -9,6 +9,7 @@ import { HostElementsComponent } from '@components/host-elements/host-elements.c
 import { LifeCycleWrapperComponent } from '@components/life-cycle/life-cycle-wrapper/life-cycle-wrapper.component';
 import { NewComponentComponent } from '@components/new-component/new-component.component';
 import { AngularPipesComponent } from '@components/pipes/angular-pipes/angular-pipes.component';
+import { NotFoundComponent } from '@components/rotas/not-found/not-found.component';
 import { RotaComParametroComponent } from '@components/rotas/rota-com-parametro/rota-com-parametro.component';
 import { SignalsComponent } from '@components/signals/signals/signals.component';
 import { TemplateBindingComponent } from '@components/template/template-binding/template-binding.component';
@@ -75,5 +76,9 @@ export const routes: Routes = [
     {
         path: 'app-rota-com-parametro/:id',
         component: RotaComParametroComponent
+    },
+    {
+        path: '**', //rota coringa
+        component: NotFoundComponent
     },
 ];
