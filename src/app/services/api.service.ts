@@ -27,16 +27,13 @@ export class ApiService {
     return this.#setListTask.asReadonly();
   }
   public httpListTask$(): Observable<ITask[]> {
-    const headers = new HttpHeaders().set('my-header', 'my-value');
     const params = new HttpParams().set('my-param', 'my-value');
     this.#setListTask.set(null);
 
     return this.#http.get<ITask[]>(this.#url(), {
-      headers,
       params
     })
     .pipe(
-      shareReplay(), //evita multiplas chamadas
       tap((res) => {
         console.log(res);
         this.#setListTask.set(res);
@@ -58,7 +55,6 @@ export class ApiService {
 
     return this.#http.get<ITask>(`${this.#url()}${id}`)
     .pipe(
-      shareReplay(),
       tap((res) => this.#setTaskId.set(res)),
       catchError((err: HttpErrorResponse) => {
         this.#setTaskIdError.set(err);
