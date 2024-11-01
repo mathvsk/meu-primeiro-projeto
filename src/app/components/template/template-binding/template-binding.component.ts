@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './template-binding.component.html',
   styleUrl: './template-binding.component.scss'
 })
-export class TemplateBindingComponent {
+export default class TemplateBindingComponent {
   public name = "Matheus Viscki"
   public age = 25
   public isDisabled = true

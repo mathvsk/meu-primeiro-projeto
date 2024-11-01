@@ -12,7 +12,6 @@ import { AngularPipesComponent } from '@components/pipes/angular-pipes/angular-p
 import { NotFoundComponent } from '@components/rotas/not-found/not-found.component';
 import { RotaComParametroComponent } from '@components/rotas/rota-com-parametro/rota-com-parametro.component';
 import { SignalsComponent } from '@components/signals/signals/signals.component';
-import { TemplateBindingComponent } from '@components/template/template-binding/template-binding.component';
 import { TemplateDeferrableViewsComponent } from '@components/template/template-deferrable-views/template-deferrable-views.component';
 import { TemplateVariablesComponent } from '@components/template/template-variables/template-variables.component';
 
@@ -26,11 +25,11 @@ export const routes: Routes = [
             },
             {
                 path: 'app-new-component',
-                component: NewComponentComponent
+                loadComponent: () => import("@components/new-component/new-component.component").then((p) => p.NewComponentComponent) // lazy loading (carrega quando abre a rota)
             },
             {
                 path: 'app-template-binding',
-                component: TemplateBindingComponent
+                loadComponent: () => import("@components/template/template-binding/template-binding.component")
             },
             {
                 path: 'app-template-variables',
